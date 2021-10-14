@@ -17,5 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// REST
 Route::get('users/{id}', [\App\Http\Controllers\UserController::class, 'getUser'])
     ->name('get_user');
+
+// SOAP Server
+Route::get('/wsdl', [\App\Http\Controllers\SOAP\SoapWsdlController::class, 'wsdl']);
+Route::post('/server', [\App\Http\Controllers\SOAP\SoapServerController::class, 'server']);
+
+// SOAP Client
+Route::get('/getUserSoap/{id}', [\App\Http\Controllers\SOAP\SoapClientController::class, 'client']);
